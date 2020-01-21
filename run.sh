@@ -1,5 +1,5 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 ./gradlew clean installDist && \
-bash build/install/blockchain/bin/blockchain
+./build/install/blockchain/bin/blockchain
 
