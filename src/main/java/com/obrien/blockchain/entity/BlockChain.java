@@ -1,5 +1,7 @@
 package com.obrien.blockchain.entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
 import lombok.Getter;
 
@@ -58,6 +60,16 @@ public class BlockChain {
             return block;
         } else {
             throw new IllegalArgumentException("Bad block!");
+        }
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

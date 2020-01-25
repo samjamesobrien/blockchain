@@ -17,8 +17,7 @@ public class Block {
 
     private final Integer previousHash;
 
-    // todo - make this usable
-    private final List<String> data = new LinkedList<>();
+    private final List<String> data;
 
 
     /**

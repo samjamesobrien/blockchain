@@ -3,6 +3,8 @@ package com.obrien.blockchain;
 import com.obrien.blockchain.entity.*;
 import com.obrien.blockchain.service.Miner;
 
+import java.util.Arrays;
+
 public class Main {
 
     public static void main(final String[] args) {
@@ -13,8 +15,10 @@ public class Main {
 
         // mine 10 blocks
         for (int i = 0; i < 10; i++) {
-            final Block block = miner.mine(blockChain, null);
-            System.out.println(block);
+            miner.mine(blockChain, Arrays.asList("Data: " + i));
         }
+
+        System.out.println(blockChain);
+        System.out.println("Chain is valid: " + blockChain.isValid());
     }
 }
