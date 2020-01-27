@@ -1,16 +1,15 @@
 package com.obrien.blockchain.entity;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableList;
-import lombok.Getter;
+import lombok.ToString;
 
 import java.util.LinkedList;
 import java.util.List;
 
+@ToString
 public class BlockChain {
 
-    private LinkedList<Block> blocks = new LinkedList<>();
+    private LinkedList<SolvedBlock> blocks = new LinkedList<>();
 
     /**
      * Iterate over the blocks, and verify their hash passes the proof of work,
@@ -18,12 +17,11 @@ public class BlockChain {
      */
     public boolean isValid() {
         boolean isValid = true;
-        Block previousBlock = null;
-        for (final Block block : getBlocks()) {
-            isValid = block.isValid() &&
-                    (previousBlock == null || previousBlock.hashCode() == block.getPreviousHash());
-
+        AbstractBlock previousBlock = null;
+        for (final AbstractBlock block : getBlocks()) {
+            isValid = previousBlock == null || previousBlock.hash() == block.getPreviousHash();
             previousBlock = block;
+            if (!isValid) break;
         }
         return isValid;
     }
@@ -31,45 +29,21 @@ public class BlockChain {
     /**
      * Return an immutable view of the blocks.
      */
-    public synchronized List<Block> getBlocks() {
+    public synchronized List<SolvedBlock> getBlocks() {
         return ImmutableList.copyOf(blocks);
     }
 
     /**
-     * What is the hash of the latest block?
+     * Add a block to the chain.
      */
-    public Integer getLatestHash() {
-        return blocks.isEmpty() ? 0 : getLatestBlock().hashCode();
+    public synchronized void addBlock(final SolvedBlock block) {
+        blocks.add(block);
     }
 
     /**
-     * Get the newest block in the chain.
+     * Get the latest hash.
      */
-    public Block getLatestBlock() {
-        return blocks.getLast();
-    }
-
-    /**
-     * Try to add a block to the chain, it must be valid.
-     */
-    public synchronized Block addBlock(final Block block) {
-        if (block.isValid()
-                && getLatestHash().equals(block.getPreviousHash())
-                && blocks.add(block)) {
-
-            return block;
-        } else {
-            throw new IllegalArgumentException("Bad block!");
-        }
-    }
-
-    @Override
-    public String toString() {
-        try {
-            return new ObjectMapper().writeValueAsString(this);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
+    public String getLatestHash() {
+        return blocks.isEmpty() ? "0" : blocks.getLast().hash();
     }
 }
