@@ -19,7 +19,7 @@ public class BlockChain {
         boolean isValid = true;
         AbstractBlock previousBlock = null;
         for (final AbstractBlock block : getBlocks()) {
-            isValid = previousBlock == null || previousBlock.hash() == block.getPreviousHash();
+            isValid = previousBlock == null || previousBlock.hash().equals(block.getPreviousHash());
             previousBlock = block;
             if (!isValid) break;
         }

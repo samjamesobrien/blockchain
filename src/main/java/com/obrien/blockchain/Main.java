@@ -14,10 +14,16 @@ public class Main {
 
         // mine 10 blocks
         for (int i = 0; i < 10; i++) {
+            // Create the next block
             final MutableBlock block = new MutableBlock(blockChain.getLatestHash());
 
+            // Add some data
+            block.addData("Block: " + i);
+
+            // Solve the new block
             final SolvedBlock solved = miner.solveBlock(block);
 
+            // Add it to the blockchain
             blockChain.addBlock(solved);
         }
 
