@@ -3,15 +3,13 @@ package com.obrien.blockchain.entity;
 import com.google.common.collect.ImmutableList;
 import lombok.ToString;
 
-import java.util.List;
-
 /**
  * Once a block is solved, it should be immutable.
  * <p>Immutability is enforced by validation, but for communication & convenience the API for this object
  * enforces it also.</p>
  */
 @ToString
-public class SolvedBlock extends AbstractBlock {
+public final class SolvedBlock extends AbstractBlock {
 
     private final String previousHash;
 
