@@ -4,7 +4,7 @@ import com.google.common.hash.Hashing;
 
 import java.util.List;
 
-import static com.obrien.blockchain.service.HashingService.hashCollection;
+import static com.obrien.blockchain.service.Utils.hashCollection;
 
 public abstract class AbstractBlock {
 

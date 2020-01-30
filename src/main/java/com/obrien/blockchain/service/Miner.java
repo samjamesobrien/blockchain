@@ -1,7 +1,7 @@
 package com.obrien.blockchain.service;
 
-import com.obrien.blockchain.entity.MutableBlock;
-import com.obrien.blockchain.entity.SolvedBlock;
+import com.obrien.blockchain.entity.blockchain.MutableBlock;
+import com.obrien.blockchain.entity.blockchain.SolvedBlock;
 
 import java.util.Optional;
 

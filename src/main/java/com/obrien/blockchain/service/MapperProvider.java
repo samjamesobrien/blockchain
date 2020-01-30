@@ -10,7 +10,7 @@ public class MapperProvider {
 
     private static final ObjectMapper MAPPER;
 
-    public ObjectMapper get() {
+    public ObjectMapper getInstance() {
         return MAPPER;
     }
 }
