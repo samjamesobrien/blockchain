@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(final String[] args) {
 
+
         final Miner miner = new Miner(5);
 
         final BlockChain blockChain = new BlockChain();

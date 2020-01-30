@@ -1,4 +1,4 @@
-package com.obrien.blockchain.entity;
+package com.obrien.blockchain.entity.blockchain;
 
 import lombok.ToString;
 

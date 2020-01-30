@@ -1,9 +1,10 @@
-package com.obrien.blockchain.entity;
+package com.obrien.blockchain.entity.blockchain;
 
-import com.google.common.hash.Funnels;
 import com.google.common.hash.Hashing;
 
 import java.util.List;
+
+import static com.obrien.blockchain.service.HashingService.hashCollection;
 
 public abstract class AbstractBlock {
 
@@ -31,19 +32,8 @@ public abstract class AbstractBlock {
                 .newHasher()
                 .putUnencodedChars(getPreviousHash())
                 .putLong(getNumber().longValue())
-                .putUnencodedChars(hashData())
+                .putUnencodedChars(hashCollection(getData()))
                 .hash()
-                .toString();
-    }
-
-    /**
-     * Hash the data only.
-     */
-    private String hashData() {
-        return Hashing.sha256()
-                .hashObject(getData(), Funnels.sequentialFunnel(
-                        (input, sink) -> sink.putInt(input.hashCode())
-                ))
                 .toString();
     }
 }
