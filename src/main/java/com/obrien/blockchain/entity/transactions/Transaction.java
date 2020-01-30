@@ -7,7 +7,6 @@ import com.obrien.blockchain.service.Utils;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.security.PrivateKey;
