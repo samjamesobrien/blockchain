@@ -8,5 +8,5 @@ import lombok.RequiredArgsConstructor;
 public class TransactionInput {
 
     private final String transactionOutputId;
-
+    private TransactionOutput unspentOutput;
 }

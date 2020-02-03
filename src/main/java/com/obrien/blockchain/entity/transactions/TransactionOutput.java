@@ -24,7 +24,7 @@ public class TransactionOutput {
                 .hash()
                 .toString();
     }
-    
+
     public boolean belongsTo(final PublicKey publicKey) {
         return recipient.equals(publicKey);
     }
